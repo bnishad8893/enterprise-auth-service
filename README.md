@@ -1,4 +1,4 @@
-# 🔐 Enterprise Auth Service
+# Enterprise Auth Service
 
 > A production-ready Authentication & User Management API built with **Django**, **Django REST Framework**, **PostgreSQL**, **Redis**, **JWT**, **OAuth2**, **Docker**, **Celery**, and **GitHub Actions** following **Clean Architecture** and enterprise software engineering best practices.
 
