@@ -1,340 +1,132 @@
 # Enterprise Auth Service
 
-> A production-ready Authentication & User Management API built with **Django**, **Django REST Framework**, **PostgreSQL**, **Redis**, **JWT**, **OAuth2**, **Docker**, **Celery**, and **GitHub Actions** following **Clean Architecture** and enterprise software engineering best practices.
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-![Python](https://img.shields.io/badge/Python-3.13-blue)
-![Django](https://img.shields.io/badge/Django-5.x-success)
-![DRF](https://img.shields.io/badge/DRF-Latest-red)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue)
-![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)
-![License](https://img.shields.io/badge/License-MIT-green)
+A production-ready Authentication & User Management API built with Django, Django REST Framework, PostgreSQL, Redis, JWT, OAuth2, and modern DevOps practices.
 
----
+## Project Status
 
-# 📖 Overview
+🚧 **Foundation Phase** - Repository structure and infrastructure in progress.
 
-Enterprise Auth Service is a scalable and production-ready authentication platform designed for enterprise applications and SaaS products.
+## Architecture Overview
 
-This project demonstrates professional backend engineering practices including authentication, authorization, security, clean architecture, testing, Docker, CI/CD, and cloud deployment.
+- **Backend**: Django + Django REST Framework
+- **Database**: PostgreSQL
+- **Cache/Queue**: Redis with Celery
+- **Authentication**: JWT + OAuth2
+- **Infrastructure**: Docker, Kubernetes
+- **CI/CD**: GitHub Actions
+- **Deployment**: Cloud-native (AWS/GCP/Azure)
 
-It is being developed as a real-world backend service rather than a tutorial project.
+## Quick Start
 
----
+### Prerequisites
 
-# 🎯 Project Goals
+- Python 3.11+
+- Docker & Docker Compose
+- PostgreSQL 14+
+- Redis 7+
 
-- Production-grade Authentication System
-- Enterprise User Management
-- Secure REST APIs
-- JWT Authentication
-- OAuth2 Authentication
-- Role-Based Access Control (RBAC)
-- Audit Logging
-- Dockerized Development
-- CI/CD Ready
-- Cloud Deployment Ready
+### Development Environment
 
----
+Detailed setup instructions are available in [docs/SETUP_GUIDE.md](docs/SETUP_GUIDE.md).
 
-# 🚀 Tech Stack
+### Using Dev Container
 
-## Backend
+VS Code users can use the included Dev Container:
+- Open in VS Code
+- Click "Reopen in Container" prompt
+- Automatic environment setup
 
-- Python 3.13
-- Django 5
-- Django REST Framework
+## Documentation
 
-## Database
+- [Setup Guide](docs/SETUP_GUIDE.md) - Local development and installation
+- [API Documentation](docs/API_DOCUMENTATION.md) - REST API specification
+- [Architecture Decisions](docs/ARCHITECTURE_DECISIONS.md) - Design decisions and rationale
+- [Deployment Guide](docs/DEPLOYMENT_GUIDE.md) - Production deployment procedures
+- [Developer Guide](docs/DEVELOPER_GUIDE.md) - Coding standards and contribution guidelines
+- [System Architecture](architecture/SYSTEM_DESIGN.md) - System design and components
 
-- PostgreSQL
-
-## Cache
-
-- Redis
-
-## Background Tasks
-
-- Celery
-
-## Authentication
-
-- JWT
-- OAuth2
-- Google Login
-- GitHub Login
-
-## DevOps
-
-- Docker
-- Docker Compose
-- GitHub Actions
-- Nginx
-- Gunicorn
-
-## Code Quality
-
-- Ruff
-- Black
-- MyPy
-- pre-commit
-
-## Testing
-
-- Pytest
-- Factory Boy
-- Coverage
-
----
-
-# ✨ Features
-
-## Authentication
-
-- User Registration
-- User Login
-- User Logout
-- JWT Authentication
-- Refresh Tokens
-- Email Verification
-- Password Reset
-- Change Password
-
----
-
-## Authorization
-
-- Role-Based Access Control (RBAC)
-- Groups
-- Permissions
-- Custom Roles
-
----
-
-## Security
-
-- Password Hashing
-- CSRF Protection
-- XSS Protection
-- SQL Injection Protection
-- Rate Limiting
-- Secure Headers
-- Token Rotation
-- Session Management
-
----
-
-## User Management
-
-- Profile Management
-- Avatar Upload
-- Account Activation
-- Account Deactivation
-- Login History
-- Device Tracking
-
----
-
-## Audit
-
-- User Activity Logs
-- Authentication Logs
-- Security Events
-
----
-
-## Infrastructure
-
-- Docker Support
-- Docker Compose
-- Redis
-- Celery
-- Environment Configuration
-
----
-
-# 📂 Project Structure
+## Project Structure
 
 ```
 enterprise-auth-service/
-
-├── src/
-│   ├── config/
-│   ├── apps/
-│   ├── core/
-│   └── manage.py
-│
-├── tests/
-├── docs/
-├── scripts/
-├── docker/
-├── deployment/
-├── architecture/
-├── postman/
-│
-├── .github/
-│
-├── Dockerfile
-├── docker-compose.yml
-├── pyproject.toml
-├── requirements.txt
-├── .env.example
-├── README.md
-└── LICENSE
+├── src/                 # Application source code
+├── tests/              # Unit, integration, and end-to-end tests
+├── docs/               # Project documentation
+├── scripts/            # Development and operational scripts
+├── docker/             # Docker configuration files
+├── deployment/         # Infrastructure-as-code and deployment configs
+├── architecture/       # Architecture documentation and design
+├── postman/           # API testing collections
+├── .github/           # GitHub Actions workflows and templates
+├── .vscode/           # VS Code configuration
+└── .devcontainer/     # Dev Container configuration
 ```
 
----
+## Contributing
 
-# 🏗 Architecture
+Please read [CONTRIBUTING.md](docs/DEVELOPER_GUIDE.md) for code style, testing requirements, and pull request process.
 
-This project follows:
+## Code Quality Standards
 
-- Clean Architecture
-- SOLID Principles
-- Service Layer Pattern
-- Repository Pattern
-- Modular Django Apps
-- Environment-based Configuration
+- **Test Coverage**: Minimum 80%
+- **Type Hints**: Required for all functions
+- **Code Style**: PEP 8 with Black formatter
+- **Linting**: Ruff, MyPy, Pylint
+- **Architecture**: Clean Architecture and SOLID principles
 
----
+## Deployment
 
-# 📡 API Documentation
+Deployment procedures and infrastructure configurations are in the [deployment/](deployment/) directory.
 
-Documentation will be available through:
+Supported platforms:
+- Kubernetes
+- Docker Compose
+- AWS ECS
+- AWS Lambda
+- GCP Cloud Run
+- Azure Container Instances
 
-- Swagger UI
-- ReDoc
-- OpenAPI Specification
+## Monitoring & Observability
 
----
+- Structured logging
+- Distributed tracing
+- Metrics collection
+- Health checks and readiness probes
+- Error tracking and alerting
 
-# 🧪 Testing
+## Security
 
-The project includes:
+- JWT token management
+- OAuth2 integration
+- Rate limiting
+- CORS configuration
+- HTTPS enforcement
+- Secrets management
 
-- Unit Tests
-- Integration Tests
-- API Tests
-- Authentication Tests
-- Security Tests
+See [architecture/SECURITY_ARCHITECTURE.md](architecture/SECURITY_ARCHITECTURE.md) for detailed security architecture.
 
-Target Coverage:
+## Performance
 
-```
-90%+
-```
+Optimized for high-throughput scenarios with:
+- Redis caching
+- Database query optimization
+- Asynchronous task processing
+- Connection pooling
 
----
+## License
 
-# 🐳 Docker
+This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
 
-The application is fully containerized using Docker and Docker Compose.
+## Enterprise Support
 
-Development and production environments are isolated and reproducible.
+For enterprise deployments, support services, and consulting, please contact the project maintainers.
 
----
+## Maintainers
 
-# ☁ Deployment
-
-Deployment guides will include:
-
-- AWS EC2
-- Docker
-- Nginx
-- Gunicorn
-- GitHub Actions CI/CD
-
----
-
-# 📚 Documentation
-
-Documentation will cover:
-
-- Installation Guide
-- Development Setup
-- API Reference
-- Database Design
-- Authentication Flow
-- Deployment Guide
+- Project Owner: [Your Name/Organization]
 
 ---
 
-# 📈 Roadmap
-
-## Phase 1
-
-- Project Foundation
-- Docker
-- PostgreSQL
-- Redis
-- Django Setup
-
-## Phase 2
-
-- User Registration
-- JWT Authentication
-- Login
-- Logout
-
-## Phase 3
-
-- Email Verification
-- Password Reset
-- Notifications
-
-## Phase 4
-
-- OAuth2
-- Google Login
-- GitHub Login
-
-## Phase 5
-
-- RBAC
-- Permissions
-- Admin Dashboard
-
-## Phase 6
-
-- Audit Logs
-- Monitoring
-- Security Improvements
-
-## Phase 7
-
-- AWS Deployment
-- CI/CD
-- Performance Optimization
-
----
-
-# 🤝 Contributing
-
-Contributions, suggestions, and feedback are welcome.
-
-Please create an issue before submitting a pull request.
-
----
-
-# 📄 License
-
-This project is licensed under the MIT License.
-
----
-
-# 👨‍💻 Author
-
-**Bheem Nishad**
-
-Senior Software Engineer
-
-- Python
-- Django
-- FastAPI
-- REST APIs
-- Docker
-- PostgreSQL
-- AWS
-
----
-
-⭐ If you find this project useful, consider giving it a star.
+**Built with professional engineering standards for production use.**

@@ -1,0 +1,47 @@
+{
+  "name": "Enterprise Auth Service",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.debugpy",
+        "charliermarsh.ruff",
+        "ms-python.mypy-type-checker",
+        "eamodio.gitlens",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.formatting.provider": "black",
+        "[python]": {
+          "editor.formatOnSave": true,
+          "editor.defaultFormatter": "ms-python.python"
+        }
+      }
+    }
+  },
+  "postCreateCommand": "pip install --upgrade pip setuptools wheel",
+  "remoteUser": "vscode",
+  "forwardPorts": [8000, 5432, 6379],
+  "portsAttributes": {
+    "8000": {
+      "label": "Application",
+      "onAutoForward": "notify"
+    },
+    "5432": {
+      "label": "PostgreSQL",
+      "onAutoForward": "silent"
+    },
+    "6379": {
+      "label": "Redis",
+      "onAutoForward": "silent"
+    }
+  }
+}
