@@ -1,47 +1,98 @@
 {
   "name": "Enterprise Auth Service",
-  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "image": "mcr.microsoft.com/devcontainers/python:3.13",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-    "ghcr.io/devcontainers/features/git:1": {}
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "forwardPorts": [
+    8000,
+    5432,
+    6379,
+    5050,
+    9090
+  ],
+  "portsAttributes": {
+    "8000": {
+      "label": "Django Application",
+      "onAutoForward": "notify"
+    },
+    "5432": {
+      "label": "PostgreSQL Database",
+      "onAutoForward": "silent"
+    },
+    "6379": {
+      "label": "Redis Cache",
+      "onAutoForward": "silent"
+    },
+    "5050": {
+      "label": "pgAdmin",
+      "onAutoForward": "notify"
+    },
+    "9090": {
+      "label": "Prometheus Metrics",
+      "onAutoForward": "silent"
+    }
   },
   "customizations": {
     "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.terminal.executeInFileDir": true,
+        "python.analysis.typeCheckingMode": "strict",
+        "python.analysis.diagnosticMode": "workspace",
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff",
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.fixAll.ruff": "explicit",
+            "source.organizeImports.ruff": "explicit"
+          }
+        },
+        "editor.rulers": [
+          100,
+          120
+        ],
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true
+      },
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance",
         "ms-python.debugpy",
         "charliermarsh.ruff",
         "ms-python.mypy-type-checker",
+        "ms-azuretools.vscode-docker",
         "eamodio.gitlens",
-        "ms-azuretools.vscode-docker"
-      ],
-      "settings": {
-        "python.defaultInterpreterPath": "/usr/local/bin/python",
-        "python.linting.enabled": true,
-        "python.formatting.provider": "black",
-        "[python]": {
-          "editor.formatOnSave": true,
-          "editor.defaultFormatter": "ms-python.python"
-        }
-      }
+        "redhat.vscode-yaml",
+        "hbenl.vscode-test-explorer",
+        "LittleFoxTeam.vscode-python-test-adapter",
+        "yzhang.markdown-all-in-one",
+        "DavidAnson.vscode-markdownlint",
+        "EditorConfig.EditorConfig",
+        "usernamehw.errorlens",
+        "mikestead.dotenv",
+        "GitHub.copilot",
+        "GitHub.copilot-chat"
+      ]
     }
   },
-  "postCreateCommand": "pip install --upgrade pip setuptools wheel",
+  "postCreateCommand": "bash -c 'python -m pip install --upgrade pip uv && uv pip install -e \".[dev,test]\" && pre-commit install'",
   "remoteUser": "vscode",
-  "forwardPorts": [8000, 5432, 6379],
-  "portsAttributes": {
-    "8000": {
-      "label": "Application",
-      "onAutoForward": "notify"
-    },
-    "5432": {
-      "label": "PostgreSQL",
-      "onAutoForward": "silent"
-    },
-    "6379": {
-      "label": "Redis",
-      "onAutoForward": "silent"
-    }
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/root/.venv/bin",
+    "PYTHONPATH": "/workspaces/enterprise-auth-service/src"
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+  ],
+  "containerEnv": {
+    "DEBUG": "True",
+    "DJANGO_SETTINGS_MODULE": "src.settings",
+    "PYTHONUNBUFFERED": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
   }
 }
