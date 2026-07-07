@@ -1,4 +1,5 @@
 """ASGI entrypoint for the Django project."""
+
 import os
 
 from django.core.asgi import get_asgi_application

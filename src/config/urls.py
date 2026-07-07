@@ -1,7 +1,5 @@
 """URL configuration for the enterprise authentication service."""
 
+from django.urls import URLPattern, URLResolver
 
-
-urlpatterns = [
-    # Future endpoints are mounted here.
-]
+urlpatterns: list[URLPattern | URLResolver] = []
