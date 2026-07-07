@@ -37,7 +37,7 @@ THIRD_PARTY_APPS: list[str] = [
     "rest_framework_simplejwt",
 ]
 
-LOCAL_APPS = [
+LOCAL_APPS: list[str] = [
     "apps.api",
     "apps.authentication",
 ]
