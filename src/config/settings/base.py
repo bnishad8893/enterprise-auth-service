@@ -1,4 +1,5 @@
 """Base Django settings for all environments."""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -31,7 +32,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY_APPS = [
+THIRD_PARTY_APPS: list[str] = [
     "rest_framework",
     "rest_framework_simplejwt",
 ]
@@ -42,6 +43,8 @@ LOCAL_APPS = [
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+AUTH_USER_MODEL = "accounts.User"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -75,9 +78,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 ASGI_APPLICATION = "config.asgi.application"
 
-DATABASES = {
-    "default": env.db(default=f"sqlite:///{ROOT_DIR / 'db.sqlite3'}")
-}
+DATABASES = {"default": env.db(default=f"sqlite:///{ROOT_DIR / 'db.sqlite3'}")}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
