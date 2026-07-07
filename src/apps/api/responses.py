@@ -1,38 +1,59 @@
-"""Shared API response helpers."""
+"""Standard API response helpers and utilities."""
 from __future__ import annotations
 
 from typing import Any
 
+from rest_framework import status
 from rest_framework.response import Response
 
 
 def success_response(
-    data: dict[str, Any] | None = None,
-    message: str | None = None,
-    status_code: int = 200,
+    data: Any = None,
+    message: str = "Success",
+    status_code: int = status.HTTP_200_OK,
 ) -> Response:
-    """Return a standardized success response."""
-    payload: dict[str, Any] = {
-        "success": True,
-        "data": data or {},
-    }
-    if message is not None:
-        payload["message"] = message
+    """
+    Create a standard success response.
 
-    return Response(payload, status=status_code)
+    Args:
+        data: The response data payload. Defaults to None.
+        message: A descriptive message. Defaults to "Success".
+        status_code: HTTP status code. Defaults to 200.
+
+    Returns:
+        Response: A DRF Response with standardized format.
+    """
+    return Response(
+        {
+            "success": True,
+            "message": message,
+            "data": data or {},
+        },
+        status=status_code,
+    )
 
 
 def error_response(
-    errors: dict[str, Any] | None = None,
-    message: str | None = None,
-    status_code: int = 400,
+    errors: Any = None,
+    message: str = "An error occurred",
+    status_code: int = status.HTTP_400_BAD_REQUEST,
 ) -> Response:
-    """Return a standardized error response."""
-    payload: dict[str, Any] = {
-        "success": False,
-        "errors": errors or {},
-    }
-    if message is not None:
-        payload["message"] = message
+    """
+    Create a standard error response.
 
-    return Response(payload, status=status_code)
+    Args:
+        errors: Error details as dict or list. Defaults to None.
+        message: A descriptive error message. Defaults to "An error occurred".
+        status_code: HTTP status code. Defaults to 400.
+
+    Returns:
+        Response: A DRF Response with error format.
+    """
+    return Response(
+        {
+            "success": False,
+            "message": message,
+            "errors": errors or {},
+        },
+        status=status_code,
+    )
