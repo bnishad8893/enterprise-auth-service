@@ -1,7 +1,10 @@
 """URL configuration for the enterprise authentication service."""
+from __future__ import annotations
 
+from django.urls import include, path
 
+app_name = "config"
 
 urlpatterns = [
-    # Future endpoints are mounted here.
+    path("api/", include("apps.authentication.urls")),
 ]
