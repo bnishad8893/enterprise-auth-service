@@ -37,10 +37,12 @@ THIRD_PARTY_APPS: list[str] = [
 ]
 
 LOCAL_APPS: list[str] = [
-    # Add future local application packages here.
+    "apps.accounts",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+AUTH_USER_MODEL = "accounts.User"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
