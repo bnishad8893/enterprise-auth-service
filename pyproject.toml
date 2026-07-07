@@ -14,6 +14,7 @@ authors=[{name="Enterprise Auth Team"}]
 dependencies=[
   "django>=5.2,<6.0",
   "djangorestframework>=3.16",
+  "djangorestframework-simplejwt>=5.3",
   "django-environ>=0.12",
   "python-dotenv>=1.1",
   "psycopg[binary]>=3.2",

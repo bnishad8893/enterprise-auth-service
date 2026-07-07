@@ -1,5 +1,10 @@
 """URL configuration for the enterprise authentication service."""
+from __future__ import annotations
 
-from django.urls import URLPattern, URLResolver
+from django.urls import include, path
 
-urlpatterns: list[URLPattern | URLResolver] = []
+app_name = "config"
+
+urlpatterns = [
+    path("api/", include("apps.authentication.urls")),
+]
