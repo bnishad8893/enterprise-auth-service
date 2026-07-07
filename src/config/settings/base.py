@@ -36,7 +36,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    # Add future local application packages here.
+    "apps.api",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -136,4 +136,26 @@ LOGGING = {
             "propagate": False,
         },
     },
+}
+
+# Django REST Framework Configuration
+REST_FRAMEWORK = {
+    # JSON-only renderer, no browsable API
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+    ],
+    # Session authentication by default
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+    # Allow all by default
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+    # Standard pagination
+    "DEFAULT_PAGINATION_CLASS": "apps.api.pagination.StandardPagination",
+    # Custom exception handler
+    "EXCEPTION_HANDLER": "apps.api.exceptions.api_exception_handler",
+    # URL path versioning
+    "DEFAULT_VERSIONING_CLASS": "apps.api.versioning.APIVersioning",
 }
